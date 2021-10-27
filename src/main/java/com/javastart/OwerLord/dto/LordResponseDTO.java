@@ -1,11 +1,13 @@
-package com.javastart.OwerLord.controller.dto;
+package com.javastart.OwerLord.dto;
 
 import com.javastart.OwerLord.entity.Lord;
 
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.Data;
 
+@Data
 public class LordResponseDTO {
 
     private Long id;
@@ -30,37 +32,5 @@ public class LordResponseDTO {
         planets = lord.getPlanets().stream().
                 map(PlanetResponseDTO::new).
                 collect(Collectors.toList());
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public List<PlanetResponseDTO> getPlanets() {
-        return planets;
-    }
-
-    public void setPlanets(List<PlanetResponseDTO> planets) {
-        this.planets = planets;
     }
 }

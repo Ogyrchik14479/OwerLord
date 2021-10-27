@@ -1,7 +1,7 @@
 package com.javastart.OwerLord.controller;
 
-import com.javastart.OwerLord.controller.dto.PlanetRequestDTO;
-import com.javastart.OwerLord.controller.dto.PlanetResponseDTO;
+import com.javastart.OwerLord.dto.PlanetRequestDTO;
+import com.javastart.OwerLord.dto.PlanetResponseDTO;
 import com.javastart.OwerLord.service.PlanetService;
 import org.springframework.web.bind.annotation.*;
 

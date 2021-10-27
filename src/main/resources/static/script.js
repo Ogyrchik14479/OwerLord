@@ -1,11 +1,12 @@
 let getAllLords = async function () {
-    return await fetch("Http://localhost:8070/lords", {
+    return await fetch("http://localhost:8080/lords", {
         methd: 'GET',
     })
         .then(r => r.json())
         .then(function (event) {
             const container = document.querySelector(".resultGetAllLords");
             const result = event.map(el => `<div>
+                                                <p style="display: inline-block; margin: 0 10px 10px 0">name: ${el.id}</p>
                                                 <p style="display: inline-block; margin: 0 10px 10px 0">name: ${el.name}</p>
                                                 <p style="display: inline-block; margin: 0 10px 10px 0">age: ${el.age}</p>
                                                 <ul>
@@ -19,13 +20,14 @@ let getAllLords = async function () {
 };
 
 let getAllLoafers = async function () {
-    return await fetch("Http://localhost:8070/loafers", {
+    return await fetch("http://localhost:8080/loafers", {
         methd: 'GET',
     })
         .then(r => r.json())
         .then(function (event) {
             const container = document.querySelector(".resultGetAllLords");
             const result = event.map(el => `<div>
+                                                <p style="display: inline-block; margin: 0 10px 10px 0">name: ${el.id}</p>
                                                 <p style="display: inline-block; margin: 0 10px 10px 0">name: ${el.name}</p>
                                                 <p style="display: inline-block; margin: 0 10px 10px 0">age: ${el.age}</p>
                                                 <ul>
@@ -39,13 +41,14 @@ let getAllLoafers = async function () {
 };
 
 let getTopLords = async function () {
-    return await fetch("Http://localhost:8070/topLords", {
+    return await fetch("http://localhost:8080/topLords", {
         methd: 'GET',
     })
         .then(r => r.json())
         .then(function (event) {
             const container = document.querySelector(".resultGetAllLords");
             const result = event.map(el => `<div>
+                                                <p style="display: inline-block; margin: 0 10px 10px 0">name: ${el.id}</p>
                                                 <p style="display: inline-block; margin: 0 10px 10px 0">name: ${el.name}</p>
                                                 <p style="display: inline-block; margin: 0 10px 10px 0">age: ${el.age}</p>
                                                 <ul>
@@ -59,7 +62,7 @@ let getTopLords = async function () {
 };
 
 let getAllPlanet = async function () {
-    return await fetch("Http://localhost:8070/planets", {
+    return await fetch("http://localhost:8080/planets", {
         methd: 'GET',
     })
         .then(r => r.json())
@@ -87,7 +90,7 @@ formCreateLord.addEventListener("submit", function (evt) {
         age: this.elements.age.value
     };
 
-    fetch("Http://localhost:8070/lords", {
+    fetch("http://localhost:8080/lords", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -111,7 +114,7 @@ formCreatePlanet.addEventListener("submit", function (evt) {
         name: this.elements.name.value,
     };
 
-    fetch("Http://localhost:8070/planets", {
+    fetch("http://localhost:8080/planets", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -131,7 +134,7 @@ let formDestroyPlanet = document.querySelector("form.destroyPlanet");
 formDestroyPlanet.addEventListener("submit", function (evt) {
     evt.preventDefault();
 
-    fetch("Http://localhost:8070/planets/" + this.elements.id.value, {
+    fetch("http://localhost:8080/planets/" + this.elements.id.value, {
         method: 'DELETE'
     })
         .then(r => r.text())
@@ -146,7 +149,7 @@ let formManagerPlanet = document.querySelector("form.managerPlanet");
 formManagerPlanet.addEventListener("submit", function (evt) {
     evt.preventDefault();
 
-    fetch("Http://localhost:8070/lordPlanet/" + this.elements.idLord.value + "/" + this.elements.idPlanet.value, {
+    fetch("http://localhost:8080/lordPlanet/" + this.elements.idLord.value + "/" + this.elements.idPlanet.value, {
         method: 'PUT'
     })
         .then(r => r.text())

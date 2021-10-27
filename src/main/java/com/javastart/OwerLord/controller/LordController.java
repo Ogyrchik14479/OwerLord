@@ -1,8 +1,8 @@
 package com.javastart.OwerLord.controller;
 
 import com.javastart.OwerLord.service.LordService;
-import com.javastart.OwerLord.controller.dto.LordRequestDTO;
-import com.javastart.OwerLord.controller.dto.LordResponseDTO;
+import com.javastart.OwerLord.dto.LordRequestDTO;
+import com.javastart.OwerLord.dto.LordResponseDTO;
 import com.javastart.OwerLord.entity.Lord;
 import com.javastart.OwerLord.entity.Planet;
 import com.javastart.OwerLord.service.PlanetService;

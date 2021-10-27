@@ -1,4 +1,4 @@
-package com.javastart.OwerLord.controller.dto;
+package com.javastart.OwerLord.dto;
 
 import com.javastart.OwerLord.entity.Planet;
 
