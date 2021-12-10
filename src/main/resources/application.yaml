@@ -2,7 +2,15 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        generate_statistics: false # статистика hibernate
   datasource:
     url: jdbc:postgresql://localhost:5432/owerlord
     username: postgres
     password: admin
+
+logging:
+  level:
+    org.hibernate.SQL: INFO
+    org.hibernate.type: INFO
