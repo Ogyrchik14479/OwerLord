@@ -1,11 +1,8 @@
 spring:
-  h2:
-    console.enabled: true
-    #http://localhost:8080/h2-console
-  datasource:
-    url: jdbc:h2:mem:mydb
-    username: sa
-    password: password
-    driverClassName: org.h2.Driver
   jpa:
-    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/owerlord
+    username: postgres
+    password: admin
