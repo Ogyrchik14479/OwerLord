@@ -1,4 +1,4 @@
-package com.javastart.OwerLord.dto;
+package com.javastart.owerlord.dto;
 
 public class PlanetRequestDTO {
 

@@ -1,4 +1,4 @@
-package com.javastart.OwerLord.entity;
+package com.javastart.owerlord.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;

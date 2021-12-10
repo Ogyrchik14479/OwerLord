@@ -1,6 +1,6 @@
-package com.javastart.OwerLord.dto;
+package com.javastart.owerlord.dto;
 
-import com.javastart.OwerLord.entity.Lord;
+import com.javastart.owerlord.entity.Lord;
 
 
 import java.util.List;

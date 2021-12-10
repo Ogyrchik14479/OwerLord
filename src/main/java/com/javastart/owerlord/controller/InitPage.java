@@ -1,4 +1,4 @@
-package com.javastart.OwerLord.controller;
+package com.javastart.owerlord.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

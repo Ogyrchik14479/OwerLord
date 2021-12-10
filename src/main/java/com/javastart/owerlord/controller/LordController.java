@@ -1,11 +1,11 @@
-package com.javastart.OwerLord.controller;
+package com.javastart.owerlord.controller;
 
-import com.javastart.OwerLord.service.LordService;
-import com.javastart.OwerLord.dto.LordRequestDTO;
-import com.javastart.OwerLord.dto.LordResponseDTO;
-import com.javastart.OwerLord.entity.Lord;
-import com.javastart.OwerLord.entity.Planet;
-import com.javastart.OwerLord.service.PlanetService;
+import com.javastart.owerlord.service.LordService;
+import com.javastart.owerlord.dto.LordRequestDTO;
+import com.javastart.owerlord.dto.LordResponseDTO;
+import com.javastart.owerlord.entity.Lord;
+import com.javastart.owerlord.entity.Planet;
+import com.javastart.owerlord.service.PlanetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

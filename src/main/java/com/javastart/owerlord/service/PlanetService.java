@@ -1,9 +1,9 @@
-package com.javastart.OwerLord.service;
+package com.javastart.owerlord.service;
 
-import com.javastart.OwerLord.exception.LordNotFoundException;
-import com.javastart.OwerLord.exception.NameIsEmptyException;
-import com.javastart.OwerLord.entity.Planet;
-import com.javastart.OwerLord.repository.PlanetRepository;
+import com.javastart.owerlord.exception.LordNotFoundException;
+import com.javastart.owerlord.exception.NameIsEmptyException;
+import com.javastart.owerlord.entity.Planet;
+import com.javastart.owerlord.repository.PlanetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

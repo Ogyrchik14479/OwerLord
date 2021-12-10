@@ -1,4 +1,4 @@
-package com.javastart.OwerLord.exception;
+package com.javastart.owerlord.exception;
 
 public class IncorrectSetAgeException extends RuntimeException {
 

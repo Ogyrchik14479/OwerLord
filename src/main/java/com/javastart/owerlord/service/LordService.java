@@ -1,11 +1,11 @@
-package com.javastart.OwerLord.service;
+package com.javastart.owerlord.service;
 
-import com.javastart.OwerLord.entity.Lord;
-import com.javastart.OwerLord.entity.Planet;
-import com.javastart.OwerLord.exception.IncorrectSetAgeException;
-import com.javastart.OwerLord.exception.LordNotFoundException;
-import com.javastart.OwerLord.exception.NameIsEmptyException;
-import com.javastart.OwerLord.repository.LordRepository;
+import com.javastart.owerlord.entity.Lord;
+import com.javastart.owerlord.entity.Planet;
+import com.javastart.owerlord.exception.IncorrectSetAgeException;
+import com.javastart.owerlord.exception.LordNotFoundException;
+import com.javastart.owerlord.exception.NameIsEmptyException;
+import com.javastart.owerlord.repository.LordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

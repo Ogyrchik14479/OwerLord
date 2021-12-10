@@ -1,6 +1,6 @@
-package com.javastart.OwerLord.dto;
+package com.javastart.owerlord.dto;
 
-import com.javastart.OwerLord.entity.Planet;
+import com.javastart.owerlord.entity.Planet;
 
 public class PlanetResponseDTO {
 
