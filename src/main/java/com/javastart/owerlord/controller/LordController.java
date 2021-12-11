@@ -1,73 +1,60 @@
 package com.javastart.owerlord.controller;
 
-import com.javastart.owerlord.service.LordService;
-import com.javastart.owerlord.dto.LordRequestDTO;
-import com.javastart.owerlord.dto.LordResponseDTO;
+import com.javastart.owerlord.dto.request.LordCreateRequest;
+import com.javastart.owerlord.dto.response.LordView;
 import com.javastart.owerlord.entity.Lord;
-import com.javastart.owerlord.entity.Planet;
-import com.javastart.owerlord.service.PlanetService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Comparator;
+import com.javastart.owerlord.exception.EntityNotFoundException;
+import com.javastart.owerlord.mapper.LordMapper;
+import com.javastart.owerlord.service.LordService;
 import java.util.List;
-import java.util.stream.Collectors;
+import javax.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RestController
+@RequiredArgsConstructor
 public class LordController {
     
     private final LordService lordService;
-    private final PlanetService planetService;
 
-    @Autowired
-    public LordController(LordService lordService, PlanetService planetService) {
-        this.lordService = lordService;
-        this.planetService = planetService;
-    }
+    private final LordMapper lordMapper;
 
     @PostMapping("/lords")
-    public Long createLord(@RequestBody LordRequestDTO lordRequestDTO) {
-        return lordService.addLord(lordRequestDTO.getName(), lordRequestDTO.getAge());
+    public Long createLord(@RequestBody @Valid LordCreateRequest lordCreateRequest) {
+        return lordService.addLord(lordMapper.convert(lordCreateRequest));
     }
 
     @GetMapping("lords/{id}")
-    public LordResponseDTO getLord(@PathVariable Long id) {
-        System.out.println(lordService.getLordById(id).toString());
-        return new LordResponseDTO(lordService.getLordById(id));
+    public LordView getLord(@PathVariable Long id) {
+        Lord lord = lordService.getLordById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Lord can't find by id = ", id));
+        return lordMapper.convert(lord);
     }
 
     @GetMapping("/lords")
-    public List<LordResponseDTO> getAllLords() {
-        return lordService.getAll()
-                .stream()
-                .map(LordResponseDTO::new)
-                .collect(Collectors.toList());
+    public List<LordView> getAllLords() {
+        return lordMapper.convert(lordService.getAll());
     }
 
     @PutMapping ("/lordPlanet/{idLord}/{idPlanet}")
     public void addPlanetToLord(@PathVariable Long idLord, @PathVariable Long idPlanet) {
-        Planet planet = planetService.getPlanetById(idPlanet);
-        lordService.addPlanetToLord(idLord, planet);
+        lordService.addPlanetToLord(idLord, idPlanet);
     }
 
     @GetMapping("/loafers")
-    public List<LordResponseDTO> getAllLoafers() {
-        return lordService.getAll()
-                .stream()
-                .filter(x -> x.getPlanets().isEmpty())
-                .map(LordResponseDTO::new)
-                .collect(Collectors.toList());
+    public List<LordView> getAllLoafers() {
+        return lordMapper.convert(lordService.getTenTheTopYoungest());
     }
 
     @GetMapping("/topLords")
-    public List<LordResponseDTO> getSortedLords() {
-        return lordService.getAll()
-                .stream()
-                .sorted(Comparator.comparing(Lord::getAge))
-                .limit(10)
-                .map(LordResponseDTO::new)
-                .collect(Collectors.toList());
+    public List<LordView> getSortedLords() {
+        return lordMapper.convert(lordService.getTenTheTopYoungest());
     }
-
 }

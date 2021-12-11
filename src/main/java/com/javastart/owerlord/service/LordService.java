@@ -2,45 +2,43 @@ package com.javastart.owerlord.service;
 
 import com.javastart.owerlord.entity.Lord;
 import com.javastart.owerlord.entity.Planet;
-import com.javastart.owerlord.exception.IncorrectSetAgeException;
-import com.javastart.owerlord.exception.LordNotFoundException;
-import com.javastart.owerlord.exception.NameIsEmptyException;
+import com.javastart.owerlord.exception.EntityNotFoundException;
 import com.javastart.owerlord.repository.LordRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+import java.util.Optional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
+@RequiredArgsConstructor
 public class LordService {
 
     private final LordRepository lordRepository;
 
-    @Autowired
-    public LordService(LordRepository lordRepository) {
-        this.lordRepository = lordRepository;
-    }
+    private final PlanetService planetService;
 
-    public Long addLord(String name, Integer age) {
-        name = name.trim();
-        if (name.isEmpty())
-            throw new NameIsEmptyException("The name of the lord must not be empty");
-        if (age == null || age <= 0)
-            throw new IncorrectSetAgeException("The age of the lord must not be empty and must be greater than 0");
-
-        Lord lord = new Lord(name, age);
+    public Long addLord(Lord lord) {
         return lordRepository.save(lord).getId();
     }
 
-    public Lord getLordById(long id) {
-        return lordRepository.findById(id)
-                .orElseThrow(() -> new LordNotFoundException("Lord can't find by id :" + id));
+    public Optional<Lord> getLordById(long id) {
+        return lordRepository.findById(id);
     }
 
-    public void addPlanetToLord(Long idLord, Planet planet) {
-        Lord lord = getLordById(idLord);
-        lord.addPlanetToLord(planet);
+    public void addPlanetToLord(Long idLord, Long idPlanet) {
+        Planet planet = planetService.getPlanetById(idPlanet)
+                .orElseThrow(() -> new EntityNotFoundException("Planet can't find by id = ", idPlanet));
+
+        Lord lord = getLordById(idLord)
+                .orElseThrow(() -> new EntityNotFoundException("Lord can't find by id = ", idPlanet));
+
+        lord.getPlanets().add(planet);
         lordRepository.save(lord);
+    }
+
+    public List<Lord> getTenTheTopYoungest() {
+        return lordRepository.findTheTopYoungest(PageRequest.ofSize(10));
     }
 
     public List<Lord> getAll() {
